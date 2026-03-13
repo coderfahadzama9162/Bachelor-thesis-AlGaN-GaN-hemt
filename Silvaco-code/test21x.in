@@ -1,0 +1,258 @@
+ #working on dimensions
+#doping: original one, Symmetrical current density profile
+
+#test8: doping same as test6 anf HfO2 used in place of TiO2
+go atlas
+#Title GaN based HEMT  
+
+#SECTION 1: MESH INPUT
+mesh
+x.mesh loc=0.0     spac=0.02
+x.mesh loc=0.1     spac=0.02
+x.mesh loc=0.3375    spac=0.02
+x.mesh loc=0.3925    spac=0.02
+x.mesh loc=0.4325    spac=0.02
+x.mesh loc=0.4875   spac=0.02
+x.mesh loc=0.725   spac=0.02
+x.mesh loc=0.825   spac=0.02 
+#x.mesh loc=0.0     spac=0.02
+#x.mesh loc=0.09     spac=0.01
+#x.mesh loc=0.11     spac=0.005
+#x.mesh loc=0.724   spac=0.01
+#x.mesh loc=0.726   spac=0.1
+#x.mesh loc=0.825   spac=0.1
+#y.mesh loc=-0.02  spac=0.01  
+#y.mesh loc=0.0  spac=0.005  
+#y.mesh loc=0.01  spac=0.001 #AlGaN_OLD#
+#y.mesh loc=0.028 spac=0.001 #GaN#
+#y.mesh loc=0.208  spac=0.001 #AlGaN#
+#y.mesh loc=0.226  spac=0.005 #Oxide#
+#y.mesh loc=0.236  spac=0.01  #Gate#
+#y.mesh loc=0.256  spac=0.01
+
+y.mesh loc=-0.02  spac=0.001  
+y.mesh loc=0.0    spac=0.001  
+y.mesh loc=0.014  spac=0.001 
+
+y.mesh loc=0.029  spac=0.001  
+y.mesh loc=0.036  spac=0.001  
+y.mesh loc=0.044  spac=0.001 
+y.mesh loc=0.062  spac=0.001
+y.mesh loc=0.078  spac=0.001 
+y.mesh loc=0.258  spac=0.001 
+y.mesh loc=0.274  spac=0.001 
+y.mesh loc=0.292  spac=0.001 
+y.mesh loc=0.3    spac=0.001 
+y.mesh loc=0.307  spac=0.001 
+y.mesh loc=0.322  spac=0.001 
+y.mesh loc=0.336  spac=0.001 
+y.mesh loc=0.356  spac=0.001 
+#y.mesh loc=0.364  spac=0.001 
+
+
+
+
+#y.mesh loc=-0.02  spac=0.01
+#y.mesh loc=0.0  spac=0.005
+#y.mesh loc=0.01  spac=0.001
+#y.mesh loc=0.025 spac=0.001
+#y.mesh loc=0.028 spac=0.001
+#y.mesh loc=0.208  spac=0.001
+#y.mesh loc=0.226  spac=0.001
+#y.mesh loc=0.236  spac=0.01
+#y.mesh loc=0.256  spac=0.001
+
+
+# SECTION 2: STRUCTURE SPECIFICATION
+
+#GATE 1
+ 
+region     num=1  material=SiO2      x.min=0.0       x.max=0.3375    y.min=-0.02  y.max=0.0
+region     num=2  material=Molybdenum x.min=0.3375   x.max=0.4875    y.min=-0.02  y.max=0.0
+region     num=3  material=SiO2       x.min=0.4875   x.max=0.825       y.min=-0.02  y.max=0.0
+
+#Source
+region     num=4  material=Copper  x.min=0.0       x.max=0.1     y.min=0.0    y.max=0.336
+
+
+#CHANNEL
+region     num=5  material=TiO2        x.min=0.1       x.max=0.3925   y.min=0.0    y.max=0.014
+region     num=6  material=Molybdenum   x.min=0.3925   x.max=0.4325    y.min=0.0  y.max=0.029
+region     num=7  material=TiO2        x.min=0.4325       x.max=0.725   y.min=0.0    y.max=0.014
+
+region     num=8  material=AlGaN      x.min=0.1      x.max=0.3375   y.min=0.014    y.max=0.036 x.composition=0.25 
+region     num=9  material=TiO2      x.min=0.3375   x.max=0.3925   y.min=0.014    y.max=0.044
+region     num=10  material=TiO2     x.min=0.3925   x.max=0.4325   y.min=0.029    y.max=0.044
+region     num=11  material=TiO2     x.min=0.4325   x.max=0.4875   y.min=0.014    y.max=0.044
+region     num=12  material=AlGaN      x.min=0.4875   x.max=0.725    y.min=0.014    y.max=0.036 x.composition=0.25 
+
+region     num=13  material=GaN        x.min=0.1       x.max=0.3375   y.min=0.036  y.max=0.062
+region     num=14  material=GaN        x.min=0.3375    x.max=0.4875   y.min=0.044  y.max=0.062
+region     num=15  material=GaN        x.min=0.4875    x.max=0.725    y.min=0.036  y.max=0.062
+
+region     num=16  material=AlGaN      x.min=0.1     x.max=0.725   y.min=0.062    y.max=0.078 x.composition=0.25 
+region     num=17  material=GaN        x.min=0.1     x.max=0.725   y.min=0.078    y.max=0.258
+region     num=18  material=AlGaN      x.min=0.1     x.max=0.725   y.min=0.258    y.max=0.274 x.composition=0.25 
+
+region     num=19  material=GaN        x.min=0.1       x.max=0.3375   y.min=0.274  y.max=0.3
+region     num=20  material=GaN        x.min=0.3375    x.max=0.4875   y.min=0.274  y.max=0.292
+region     num=21  material=GaN        x.min=0.4875    x.max=0.725    y.min=0.274  y.max=0.3
+
+
+region     num=22  material=AlGaN      x.min=0.1      x.max=0.3375   y.min=0.3    y.max=0.322 x.composition=0.25 
+region     num=23  material=TiO2      x.min=0.3375   x.max=0.3925   y.min=0.292    y.max=0.322
+region     num=24  material=TiO2     x.min=0.3925   x.max=0.4325   y.min=0.292    y.max=0.307
+region     num=25  material=TiO2     x.min=0.4325   x.max=0.4875   y.min=0.292    y.max=0.322
+region     num=26  material=AlGaN      x.min=0.4875   x.max=0.725    y.min=0.3    y.max=0.322 x.composition=0.25 
+
+
+
+#region     num=27  material=AlGaN      x.min=0.1     x.max=0.3925   y.min=0.0  y.max=0.028 x.composition=0.3 
+#region     num=28  material=GaN        x.min=0.1       x.max=0.725   y.min=0.028  y.max=0.05
+#region     num=29  material=AlGaN      x.min=0.1     x.max=0.725   y.min=0.05  y.max=0.064 x.composition=0.3 
+#region     num=30  material=GaN        x.min=0.1       x.max=0.725   y.min=0.064  y.max=0.244
+#region     num=31  material=AlGaN      x.min=0.1     x.max=0.725   y.min=0.244  y.max=0.258 x.composition=0.3 
+#region     num=32  material=GaN        x.min=0.1       x.max=0.725   y.min=0.258  y.max=0.28
+#region     num=33  material=AlGaN      x.min=0.1     x.max=0.725   y.min=0.28  y.max=0.298 x.composition=0.3
+#region     num=34  material=HfO2       x.min=0.1       x.max=0.725   y.min=0.298  y.max=0.308 
+
+
+region     num=27  material=TiO2        x.min=0.1       x.max=0.3925   y.min=0.322    y.max=0.336
+region     num=28  material=Molybdenum   x.min=0.3925   x.max=0.4325    y.min=0.307  y.max=0.336
+region     num=29  material=TiO2        x.min=0.4325       x.max=0.725   y.min=0.322    y.max=0.336
+
+
+
+#DRAIN
+region     num=30  material=copper  x.min=0.725       x.max=0.825     y.min=0.0    y.max=0.336
+
+
+#GATE 2
+region     num=31  material=SiO2       x.min=0.0       x.max=0.3375    y.min=0.336  y.max=0.356
+region     num=32  material=Molybdenum x.min=0.3375    x.max=0.4875    y.min=0.336  y.max=0.356
+region     num=33  material=SiO2       x.min=0.4875    x.max=0.825     y.min=0.336  y.max=0.356
+
+
+#ELECTRODES
+ELECTRODE name=SOURCE  x.min=0.0 x.max=0.1 y.min=0.0  y.max=0.336 
+
+ELECTRODE name=GATE  x.min=0.3375 x.max=0.4875 y.min=-0.02 y.max=0.0 
+ELECTRODE name=GATE  x.min=0.3925 x.max=0.4325 y.min=0.0 y.max=0.029 
+
+ELECTRODE name=GATE  x.min=0.3925 x.max=0.4325 y.min=0.307 y.max=0.336
+ELECTRODE name=GATE  x.min=0.3375 x.max=0.4875 y.min=0.336 y.max=0.356 
+ 
+
+ELECTRODE name=DRAIN  x.min=0.725 x.max=0.825 y.min=0.0 y.max=0.336 
+
+#save outf=test1_0_tobo.str
+#tonyplot test1_0_tobo.str
+CONTACT NAME=GATE WORKFUNCTION=5.2
+
+
+#DOPING PROFILE
+#AlGaN#
+doping     uniform x.min=0.1 x.max=0.3375 y.min=0.014 y.max=0.036 n.type conc=1.e18  
+doping     uniform x.min=0.4875 x.max=0.725 y.min=0.014 y.max=0.036 n.type conc=1.e18  
+
+#GaN#
+doping     uniform x.min=0.1     x.max=0.3375    y.min=0.036 y.max=0.062 n.type conc=2.e16 
+doping     uniform x.min=0.3375  x.max=0.4875    y.min=0.044 y.max=0.062 p.type conc=2.e16 
+doping     uniform x.min=0.4875  x.max=0.725     y.min=0.036 y.max=0.062 n.type conc=2.e16 
+
+doping     uniform x.min=0.1     x.max=0.725     y.min=0.062  y.max=0.078 n.type conc=1.e18  
+doping     uniform x.min=0.1     x.max=0.725     y.min=0.078  y.max=0.258 n.type conc=1.e15
+doping     uniform x.min=0.1     x.max=0.725     y.min=0.258  y.max=0.274 n.type conc=1.e18 
+ 
+doping     uniform x.min=0.1     x.max=0.3375    y.min=0.274 y.max=0.3 n.type conc=2.e16 
+doping     uniform x.min=0.3375  x.max=0.4875    y.min=0.274 y.max=0.292 p.type conc=2.e16 
+doping     uniform x.min=0.4875  x.max=0.725     y.min=0.274 y.max=0.3 n.type conc=2.e16 
+
+doping     uniform x.min=0.1    x.max=0.3375 y.min=0.3 y.max=0.322 n.type conc=1.e18  
+doping     uniform x.min=0.4875 x.max=0.725  y.min=0.3 y.max=0.322 n.type conc=1.e18  
+
+
+
+
+#MODELS
+
+
+#1.Density gradient models : DGLOG
+#2.Auger recombination model : AUGER
+#3.Hydrodynamic Model : KSN=0 PRINT
+#4.Shockley Read Hall : SRH
+#5.Mobility Model : FLDMOB
+#6.Lombardi model : CVT
+#MODEL MOS  PRINT : SHOCKLEY,FERMI,LOMBARDI
+#7.Canali model
+
+#material taun0=1.e-9 taup0=1.e-9
+#material material=AlGaN mun=2000 mup=350 affinity=3.82  nc300=5.7e17
+#model material=GaN conmob
+#model material=GaN conmobm 
+#MODEL MATERIAL=GaN ALBRCT
+MODELS  CVT  SRH DRIFT.DIFF FLDMOB CCSMOB BGN DGLOG  AUGER KSN=0  PRINT
+#MODELS KLA  FERMIDIRAC SURFMOB 
+
+#MOS MOS  TEMP=300   KLA
+mobility ALBRCT.N 
+#impact MATERIAL=GaN N.CONCANNON mod.watt.n 
+#impact N.CONCANNON 
+#impact material=GaN selb 
+#an1=2.9e8 an2=2.9e8 bn1=3.4e7 bn2=3.4e7 \
+	    ap1=2.9e8 ap2=2.9e8 bp1=3.4e7 bp2=3.4e7
+
+output con.band val.band charge  
+#polar.charge band.par 
+
+#INTERFACE qf=1.e13 X.MIN=0.1 X.MAX=0.725 Y.MIN=0.009 Y.MAX=0.011
+#INTERFACE qf=1.e13 X.MIN=0.1 X.MAX=0.725 Y.MIN=0.225 Y.MAX=0.227
+#MODELS CVT FLDMOB SRH DGLOG AUGER  PRINT
+#save outf=test1n_0_tobo.str
+#tonyplot test1n_0_tobo.str
+solve QFACTOR=1
+solve init
+SOLVE  DELTAV=1.2 
+#SOLVE DELTAV=1.6 
+method newton  itlim=50 trap maxtrap=100
+solve vDRAIN=0.0 vstep=0.005 name=DRAIN vfinal=0.5
+solve vDRAIN=0.5 vstep=0.05 name=DRAIN vfinal=2.2
+#solve vGATE=-7.7 vstep=0.1 name=GATE vfinal=-7.6
+#output con.band val.band 
+#method newton itlim=25 trap maxtrap=6 
+method gummel newton  itlim=50 trap maxtrap=100
+solve vGATE=0.0 vstep=-0.05 name=GATE vfinal=-3
+#============================================================================================
+log outf=test21x.log
+#============================================================================================
+solve vGATE=-4 vstep=0.25 name=GATE vfinal=10 Ac freq=1e9
+#solve vGATE=-1.9 vstep=0.05 name=GATE vfinal=0.74
+logoff
+#============================================================================================
+save outf=test21x.str
+tonyplot test21x.str
+tonyplot test21x.log    
+#============================================================================================
+
+#============================================================================================
+extract init infile="test21x.log"
+#============================================================================================
+
+#============================================================================================
+extract name="gm" deriv(v."GATE", i."DRAIN"/10) outfile="test21x_gm_$'Vds'V.dat"
+#============================================================================================
+extract name="Vt" (xintercept(maxslope(curve(v."GATE",i."DRAIN"))))
+extract name="Vpinchoff" xintercept(maxslope(curve(v."GATE",i."DRAIN")))
+extract name="Idss" max(i."DRAIN")
+extract name="Vgs@0.3Idss" x.val from curve (v."GATE", i."DRAIN") where y.val=$"Idss"*0.3
+extract name="Gm_max" max(abs(g."DRAIN""GATE"))
+extract name="Gm_Vgs0" y.val from curve (v."GATE", abs(g."DRAIN""GATE")) where x.val=0.0
+extract name="Gm_Vgs@0.3Idss" y.val from curve (v."GATE", abs(g."DRAIN""GATE")) where x.val=$"Vgs@0.3Idss"
+extract name="Cgs_max" max(abs(c."GATE""SOURCE"))
+extract name="Cgs_Vgs0" y.val from curve (v."GATE", abs(c."GATE""SOURCE")) where x.val=-4.0
+extract name="Cgs_Vgs@0.3Idss" y.val from curve (v."GATE", abs(c."GATE""SOURCE")) where x.val=$"Vgs@0.3Idss"
+extract name="Ion" y.val  from curve(v."GATE",i."DRAIN")  where x.val=10.0
+extract name="Ioff" y.val  from curve(v."GATE",abs(i."DRAIN") ) where x.val=-4.0
+extract name="Ion/Ioff" $Ion/$Ioff
+   
+quit 
